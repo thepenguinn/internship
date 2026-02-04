@@ -207,12 +207,33 @@
 \DeclareRobustCommand{\FAthree}{\usefont{U}{fontawesome3}{m}{n}}
 \DeclareRobustCommand{\FAfive}{\usefont{U}{fontawesome5}{m}{n}}
 
+\definecolor{colorPastelGreen} {HTML} {97B3AE}
+\colorlet{colorNonSun}{white!15!colorPastelGreen}
+\colorlet{colorNonSunDark}{black!30!colorNonSun}
+
+\def\week{WEEK 01}
+\def\weekRange{JAN 18 2026 -- JAN 24 2026}
+
 \titleformat{\chapter} [display]
-{\bfseries\normalfont\huge\filright\sffamily\vspace{-2cm}}
-{\Large\textsc{chapter \num[minimum-integer-digits = 2]{\thechapter}} \vspace{1em}}
+{\bfseries\normalfont\huge\filright\sffamily\vspace{-3.5cm}}
+{\color{colorNonSunDark} \Large\texttt{{\week} \hfill \weekRange} \vspace{0.65em}}
 {1pc}
-{\titlerule\vspace{0.5em}\scshape}
-[\vspace{0.5em}{\titlerule[1pt]}]
+{\color{colorNonSunDark}\titlerule\vspace{0.65em}\scshape\centering\color{colorNonSunDark}}
+[\color{colorNonSunDark}\vspace{0.65em}{\titlerule[1pt]}]
+
+\titleformat{\section}
+{\vspace{-0.35em}\bfseries\normalfont\Large\filright\sffamily}
+{\thesection}
+{8pt}
+{\scshape}
+{}
+
+% \titleformat{\chapter} [display]
+% {\bfseries\normalfont\huge\filright\sffamily\vspace{-2cm}}
+% {\Large\textsc{chapter \num[minimum-integer-digits = 2]{\thechapter}} \vspace{1em}}
+% {1pc}
+% {\titlerule\vspace{0.5em}\scshape}
+% [\vspace{0.5em}{\titlerule[1pt]}]
 
 %\titleformat{\section} [display]
 %{\bfseries\normalfont\large\filright\sffamily}

@@ -1,0 +1,131 @@
+\documentclass[../../main]{subfiles}
+
+\input{section_header.tex}
+
+\begin{document}
+
+\section{THU - JAN 29 2026} \label{sec:}
+
+% \texttt{TODO: NEED TO UPDATE}
+
+% \begin{itemize}
+%     \item Boot process.
+%     \item Architecture.
+% \end{itemize}
+
+\subsection{Architecture of Nucleo-H755ZI-Q}
+
+%text%
+\begin{minted}[breaklines, autogobble] {text}
+
+                      +-------------------------+
+                      |  +-------+   +-------+  |
+                      |  |  CM7  | + |  CM4  |  |
+    +--------+        |  +-------+   +-------+  |
+    | STLINK | <----> |                         |
+    +--------+        |                         |
+                      |        +-------------+  |
+                      |        | PERIPHERALS |  |
+                      |        +-------------+  |
+                      |                         |
+                      | NUCLEO-H755ZI-Q         |
+                      +-------------------------+
+\end{minted}
+
+Nucleo-H755ZI-Q has a asymmetric dual core architecture, having two cores
+Arm Cortex M7 and Arm Cortex M4.
+
+\alertNote{
+    Asymmetric Multi-processing: One Master and One or More Slaves.
+    Master does all the configuration and task scheduling.
+}
+
+\alertNote{
+    Symmetric Multi-processing: All have equal access to memory and resources.
+}
+
+\subsubsection{Power Domains}
+
+The entire MCU is divided into 3 major power domains.
+
+\begin{itemize}
+    \item D1: Where the M7 lies
+    \item D2: Where the M4 lies
+    \item D3: Where the RCC and PWR lies.
+    \item BACKUP Domain: Where the EXTI lies.
+\end{itemize}
+
+%
+% ### D1 Domain
+%
+% - CM7 (NVIC1)
+% - Chrom-art Accelerator
+% - SDMMC1
+% - MDMA
+% - DMA2D
+% - QSPI
+% - FMC
+%
+% - FLASH A
+% - FLASH B
+% - AXI SRAM
+%
+%
+% ### D2 Domain
+%
+% - CM4 (NVIC2)
+% - ETHERNET
+% - SDMMC2
+% - USB HS 1
+% - USB HS 2
+%
+% - SRAM 1
+% - SRAM 2
+% - SRAM 3
+%
+% ### D3 Domain
+%
+% - RCC
+% - PWR
+% - BDMA
+% - SRAM4
+% - Backup SRAM
+% - GPIOs
+%
+
+% ### Stop Mode
+%
+% <!-- # Something else -->
+% <!---->
+% <!-- This file has the FLASH "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h755xx.h". -->
+%
+% # Interrupts
+%
+% There are three types of signals are transferred between different blocks.
+%
+% - Wakeup Events
+% - Signals
+% - Interrupts
+%
+% ## Nested Vectored Interrupt Controllers (NVIC1 and NVIC2)
+%
+% ## EXTI
+
+\alertImportant{
+    From figure \ref{fig:stm32Arch}, we can see that the \texttt{EXTI}\footnote{External Interrupt Controller} is
+    outside of the 3 domains. This enables to power down all 3 of these domains at the same time.
+}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [
+        % height = 0.55\textheight,
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm32_arch.pdf}
+    \captionof{figure} {STM32 Architecture.}
+    \label{fig:stm32Arch}
+\end{figure}
+
+\end{document}

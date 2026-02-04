@@ -1,0 +1,246 @@
+% height = 5.9in width = 4.37in
+% make this variable
+%% \usepackage[paperheight = 4.37in, paperwidth = 5.9in, margin=0.2in]{geometry}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{circuitikz}
+\usepackage{subfiles}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{nicematrix}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage{lmodern}
+\usepackage{bookmark}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{xspace}
+\usepackage{varwidth}
+\usepackage{titletoc}
+\usepackage{epigraph}
+\usepackage{etoolbox}
+\usepackage{fontawesome5}
+\usepackage[style = ieee]{biblatex} %Imports biblatex package
+\usepackage{xfp}
+\usepackage{xifthen}
+\usepackage{tcolorbox}
+\usepackage{xltabular}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage[numbib]{tocbibind}
+
+%% for bold textsc to work
+\rmfamily % To load Latin Modern Roman and enable the following NFSS declarations.
+% Declare that Latin Modern Roman (lmr) should take
+% its bold (b) and bold extended (bx) weight, and small capital (sc) shape,
+% from the corresponding Computer Modern Roman (cmr) font, for the T1 font encoding.
+\DeclareFontShape{T1}{lmr}{b}{sc}{<->ssub*cmr/bx/sc}{}
+\DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{}
+
+\addbibresource{abstract.bib} %Import the bibliography file
+
+\usepackage[bottom]{footmisc}
+
+\usepackage{gensymb}
+\usepackage{siunitx}
+\usepackage{pgfplots}
+
+\pgfplotsset{
+    compat=newest,
+    colormap={black}{rgb255=(0,0,0) rgb255=(0,0,0)}
+}
+
+\usetikzlibrary{intersections}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{ext.topaths.arcthrough}
+\usetikzlibrary{decorations.markings}
+
+\setlength{\arraycolsep}{0pt}
+\renewcommand\arraystretch{1.5}
+
+%% custom packages
+
+\usepackage{colorscheme}
+\usepackage{subtikzpicture}
+\usepackage{generalcommands}
+
+% alerts
+
+\newcommand\alertCaution[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAlertCaution,
+            colbacktitle = colorAlertBgCaution,
+            colback = colorAlertBgCaution,
+            colframe = colorAlertBgCaution,
+            title=Caution,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertWarning[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAlertWarning,
+            colbacktitle = colorAlertBgWarning,
+            colback = colorAlertBgWarning,
+            colframe = colorAlertBgWarning,
+            title=Warning,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertImportant[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAlertImportant,
+            colbacktitle = colorAlertBgImportant,
+            colback = colorAlertBgImportant,
+            colframe = colorAlertBgImportant,
+            title=Important,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertTip[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAlertTip,
+            colbacktitle = colorAlertBgTip,
+            colback = colorAlertBgTip,
+            colframe = colorAlertBgTip,
+            title=Tip,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+\newcommand\alertNote[1] {
+    \begin{tcolorbox}[
+            coltitle = colorAlertNote,
+            colbacktitle = colorAlertBgNote,
+            colback = colorAlertBgNote,
+            colframe = colorAlertBgNote,
+            title=Note,
+            fonttitle=\bfseries,
+            detach title,
+        ]
+        \begin{minipage}[t]{0.18\textwidth}
+            \begin{flushleft}
+                \tcbtitle
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}[t]{0.8\textwidth}
+            #1
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+%% for paragraphs
+\setlength{\parskip}{0.5\baselineskip}
+
+%% \makeatletter
+%% \def\maxwidth{\ifdim\Gin@nat@width>0.8\linewidth0.8\linewidth\else\Gin@nat@width\fi}
+%% \def\maxheight{\ifdim\Gin@nat@height>0.9\textheight0.9\textheight\else\Gin@nat@height\fi}
+%% \makeatother
+%% % Scale images if necessary, so that they will not overflow the page
+%% % margins by default, and it is still possible to overwrite the defaults
+%% % using explicit options in \includegraphics[width, height, ...]{}
+%% \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+%% % Set default figure placement to htbp
+
+%% for fontawesome
+
+%for scalling of fontawesome
+\DeclareFontFamily{U}{fontawesome1}{}
+\DeclareFontShape{U}{fontawesome1}{m}{n}{<->FontAwesome--fontawesomeone}{}
+\DeclareFontFamily{U}{fontawesome2}{}
+\DeclareFontShape{U}{fontawesome2}{m}{n}{<->FontAwesome--fontawesometwo}{}
+\DeclareFontFamily{U}{fontawesome3}{}
+\DeclareFontShape{U}{fontawesome3}{m}{n}{<->FontAwesome--fontawesomethree}{}
+\DeclareFontFamily{U}{fontawesome5}{}
+\DeclareFontShape{U}{fontawesome5}{m}{n}{<->FontAwesome--fontawesomefive}{}
+\DeclareRobustCommand{\FAone}{\usefont{U}{fontawesome1}{m}{n}}
+\DeclareRobustCommand{\FAtwo}{\usefont{U}{fontawesome2}{m}{n}}
+\DeclareRobustCommand{\FAthree}{\usefont{U}{fontawesome3}{m}{n}}
+\DeclareRobustCommand{\FAfive}{\usefont{U}{fontawesome5}{m}{n}}
+
+\titleformat{\chapter} [display]
+{\bfseries\normalfont\huge\filright\sffamily\vspace{-2cm}}
+{\Large\textsc{chapter \num[minimum-integer-digits = 2]{\thechapter}} \vspace{1em}}
+{1pc}
+{\titlerule\vspace{0.5em}\scshape}
+[\vspace{0.5em}{\titlerule[1pt]}]
+
+%\titleformat{\section} [display]
+%{\bfseries\normalfont\large\filright\sffamily}
+%{}
+%{2pt}
+%{\scshape}
+%{}
+
+\setlength\epigraphwidth{9cm}
+\setlength\epigraphrule{0pt}
+
+\renewcommand{\epigraphflush}{center}
+
+%% for graphicx
+%% https://tex.stackexchange.com/questions/439918/set-default-value-for-max-width-of-includegraphics
+
+%\expandafter\patchcmd\csname Gin@ii\endcsname
+%{\setkeys {Gin}{#1}}
+%{%
+%    \setkeys {Gin}
+%    {max width = 0.8\textwidth, max height = 0.4\textwidth, keepaspectratio, #1}%
+%}
+%{}{}
+
+\def\IGXMaxWidth{\textwidth}
+\def\IGXMaxHeight{\textheight}
+\def\IGXDefaultOptionalArgs{keepaspectratio}
+
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother

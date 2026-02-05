@@ -1,0 +1,62 @@
+\documentclass[../../main]{subfiles}
+
+\input{section_header.tex}
+
+\begin{document}
+
+\section{THU - FEB 05 2026} \label{sec:}
+
+\texttt{TODO: FORENOON UART EXERCISE}
+
+\subsection{USB On The Go}
+
+STM32 Nucleo boards supports USB OTG in full speed mode via a USB \textbf{Micro-AB} connector (CN13).
+The USB power switch (U18) is connected to $V_{BUS}$
+
+\alertWarning{
+    Do not connect Micro-AB connector before properly powering the Nucleo-144 board. As the
+    Micro-AB connector cannot power the board. There is a chance of current injection.
+}
+
+\alertImportant{
+    STM32H755ZI is capable of USB HS\footnote{High Speed} but the Nucleo board only supports upto USB
+    FS\footnote{Full Speed}.
+}
+
+\subsubsection{Different USB Speed Modes}
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}X
+            *{3}{>{\centering \arraybackslash}X}
+        }
+
+        \toprule
+
+        & Low Speed (LS) & Full Speed (FS) & High Speed (HS) \\ \midrule
+
+        Speed & 1.5 Mbit/s & 12 Mbit/s & 480 Mbit/s \\
+
+        \bottomrule
+
+    \end{tabularx}
+\end{center}
+
+
+\subsubsection{Different Modes}
+
+USB features can be divided into three categories:
+
+\begin{itemize}
+    \item General.
+    \item Host-mode.
+    \item Device-mode.
+\end{itemize}
+
+% \subsubsection{Different Modes}
+
+
+
+
+
+\end{document}

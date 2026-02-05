@@ -9,12 +9,26 @@
 \subsection{Boot Process of STM32H755ZI}
 
 There are three power domains. CM7 and CM4 lies in the D1 and D2 domains respectively. Circuits
-that are responsible for power up and clock generation lies in the D3 domain.
-% RCC\footnote{Reset and
-% Clock Controller}
+that are responsible for power up and clock generation lies in the D3 domain. RCC\footnote{Reset and Clock Controller}
+is responsible for processing reset and generating clock to the CM7 and CM4. In essence, RCC boots up the
+cores.
 
-\texttt{TODO: REST}
+\subsubsection{BOOT0 Pin and BOOT\_ADDx Registers}
 
-% boot process
+Boot0 pin enables the user to boot from a factory configured bootloader\footnote{Non user programmable.} if it is
+set to 1. Otherwise BOOT\_ADDx registers chooses the boot location of each of the cores.
+
+\alertNote{
+    There are two system memory banks. Each one is of size 128 K.
+
+    \begin{itemize}
+        \item Bank 1: Located at \texttt{0x1FF0 0000}.
+        \item Bank 2: Located at \texttt{0x1FF4 0000}.
+    \end{itemize}
+}
+
+% \alertImportant{
+%     Default values for B
+% }
 
 \end{document}

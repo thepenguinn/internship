@@ -1,0 +1,26 @@
+\documentclass[../../main]{subfiles}
+
+\input{section_header.tex}
+
+\begin{document}
+
+\section{FRI - FEB 06 2026} \label{sec:}
+
+\subsection{USB On The Go (Continued)}
+
+\subsubsection{Hardware Side Specific to STM32H755ZI}
+
+The device is capable of USB HS through an external PHY. It already has an embedded USB FS PHY.
+The nucleo board is capable of USB FS as it does not have an external USB HS PHY. In STM32H7, there
+are two instances of OTG\_HS, namely OTG\_HS1 and OTG\_HS2. Only the OTG\_HS1 instance is capable of
+achieving USB HS through an external PHY.
+
+The device has 4Kb of USB data RAM with advanced FIFO\footnote{First in first out} control. This
+memory can be partitioned by the user for each of the endpoints.
+
+\subsubsection{OTG\_HS Core}
+
+OTG\_HS receives the 48 MHz from the RCC\footnote{Reset and Clock Controller}. There are different
+registers associated with the OTG\_HS core that helps to control the core.
+
+\end{document}

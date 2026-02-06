@@ -27,7 +27,7 @@ The USB power switch (U18) is connected to $V_{BUS}$.
 
 \alertImportant{
     STM32H755ZI is capable of USB HS\footnote{High Speed} but the Nucleo board only supports upto USB
-    FS\footnote{Full Speed}. In order to use USB HS, we need to use an external through the ULPI\footnote{UTMI+
+    FS\footnote{Full Speed}. In order to use USB HS, we need to use an external PHY through the ULPI\footnote{UTMI+
     Low Pin Interface} interface.
 }
 
@@ -123,7 +123,6 @@ USB features can be divided into three categories:
     Interrupt and Isochronous are periodic and have reserved bandwidth. While Control and Bulk are asynchronous. Bulk does
     not have a reserved bandwidth.
 }
-
 
 % \subsubsection{Different Modes}
 

@@ -52,66 +52,80 @@ arbitration and timing. It supports the following modes:
     CPU overload.
 }
 
+\subsubsection{I2C: Overview}
 
-% # Hardware Interface
-%
-% Hardware bus consists of two lines.
-%
-% - SDA - DATA LINE
-% - SCL - CLK LINE
-%
-% ## Line Logic
-%
-% These lines are open collector or open drain. Meaning the devices can only
-% drive them low. Default / Idle state is high.
-%
-% [!NOTE]
-% > We need to use a pull up resistor to pull these lines high. Usually
-% > we use 1 kOhm to 10 kOhm. Then the pull up current will be about 1mA
-% > or less.
-%
-% [!NOTE]
-% > Also the driving device need to sink at least 10mA or more current.
-%
-% ## Pin out / description
-%
-% ```
-% +------------+               +------------+
-% |            |               |            |
-% |            +<---> SDA <-+->|            |
-% |   MASTER   |            |  |   SLAVE    |
-% |            +--+-> SCL ---->|            |
-% |            |  |         |  |            |
-% +------------+  |         S  +------------+
-%                 |         D
-%                 |         A  +------------+
-%                 |         |  |            |
-%                 |         +->|            |
-%                 |            |   SLAVE    |
-%                 +-- SCL ---->|            |
-%                              |            |
-%                              +------------+
-% ```
-%
-% ### SDA LINE
-%
-% This line is used to send the address from the master to slave. And to send and
-% receive data to and from the master and slaves.
-%
-% ### SCL LINE
-%
-% This line is used to provide clock.
-%
-% ## Speed
-%
-% Original Mode   - 100 kbit per second
-% Fast Mode       - 400 kbit per second
-% High Mode       - 3.4 Mbit per second
-% Fast Mode       -
-% Ultra fast Mode -
-%
-% ## Voltage Levels
-%
-% - Supply Voltage: Ranging from 1.2V to 5.5V
+\paragraph{Hardware Interface:} Hardware bus consists of two lines:
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}X
+            *{2}{>{\centering \arraybackslash}X}
+        }
+
+        \toprule
+
+        Pin & SDA & SCL \\ \midrule
+
+        Function & Data Line & Clock Line\\
+
+        \bottomrule
+
+    \end{tabularx}
+\end{center}
+
+\paragraph{Line Logic:}
+
+These lines are open collector or open drain. Meaning the devices can only
+drive them low. Default / Idle state is high.
+
+\alertNote{
+    We need to use a pull up resistor to pull these lines high. Usually
+    we use 1 kOhm to 10 kOhm. Then the pull up current will be about 1mA
+    or less.
+}
+
+\alertNote{
+    Also the driving device need to sink at least 10mA or more current.
+}
+
+\paragraph{Pin Connection}
+
+\begin{center}
+    \begin{figure}
+        %text%
+        \begin{verbatim}
+                  +------------+               +------------+
+                  |            |               |            |
+                  |            +<---> SDA <-+->|            |
+                  |   MASTER   |            |  |   SLAVE    |
+                  |            +--+-> SCL ---->|            |
+                  |            |  |         |  |            |
+                  +------------+  |         S  +------------+
+                                  |         D
+                                  |         A  +------------+
+                                  |         |  |            |
+                                  |         +->|            |
+                                  |            |   SLAVE    |
+                                  +-- SCL ---->|            |
+                                               |            |
+                                               +------------+
+        \end{verbatim}
+    \end{figure}
+    \captionof{figure} {Typical connection diagram of SDA and SCL pins in a single master application.}
+    \label{fig:}
+\end{center}
+
+\paragraph{SDA Line:}
+
+This line is used to send the address from the master to slave. And to send and
+receive data to and from the master and slaves.
+
+\paragraph{SCL Line:}
+
+This line is used to provide clock.
+
+\paragraph{Voltage Levels:}
+
+Supply Voltage: Ranging from 1.2V to 5.5V
 
 \end{document}

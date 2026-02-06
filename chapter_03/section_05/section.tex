@@ -52,7 +52,7 @@ arbitration and timing. It supports the following modes:
     CPU overload.
 }
 
-\subsubsection{I2C: Overview}
+\subsubsection{I2C: Hardware Overview}
 
 \paragraph{Hardware Interface:} Hardware bus consists of two lines:
 
@@ -66,7 +66,7 @@ arbitration and timing. It supports the following modes:
 
         Pin & SDA & SCL \\ \midrule
 
-        Function & Data Line & Clock Line\\
+        Function & Serial Data (Data Line) & Serial Clock (Clock Line) \\
 
         \bottomrule
 
@@ -127,5 +127,23 @@ This line is used to provide clock.
 \paragraph{Voltage Levels:}
 
 Supply Voltage: Ranging from 1.2V to 5.5V
+
+\subsubsection{I2C: Communication Protocol}
+
+Every data frame or the transaction is started with a \texttt{START} condition and ends with \texttt{STOP}
+condition.
+
+\paragraph{Clock Stretching:}
+
+In I2C it is possible to stretch\footnote{Analogues to pausing the clock.} the SCL line. If any of the
+device is slow to process the data, it can pull the SCL line low.
+
+\paragraph{Arbitration:}
+
+It's a mechanism to decide which master should take control of the I2C bus.
+
+\texttt{TODO: FRAME}
+
+% \subsubsection{}
 
 \end{document}

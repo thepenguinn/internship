@@ -21,6 +21,12 @@ force:
 	pdflatex -shell-escape -halt-on-error main.tex
 	$(VIEWER) main.pdf
 
+readme: internship_report.pdf gen_readme.sh
+	./gen_readme.sh
+
+internship_report.pdf: main.pdf
+	cp main.pdf internship_report.pdf
+
 main.pdf: main.tex preamble.tex colorscheme.sty $(ABSTRACT) $(CHAPTERS) $(SECTIONS) $(WORKS) $(TIKZPICS)
 	lunatikz build main.tex
 	pdflatex -shell-escape -halt-on-error main.tex
@@ -42,4 +48,4 @@ view:
 send:
 	$(SENDER) main.pdf
 
-.PHONY: view build force view_abstract abstract clean
+.PHONY: view build force view_abstract abstract clean readme

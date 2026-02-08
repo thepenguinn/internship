@@ -146,4 +146,51 @@ It's a mechanism to decide which master should take control of the I2C bus.
 
 % \subsubsection{}
 
+\subsubsection{More about STM32H755ZI's I2C Interface: Implementation}
+
+There are four I2C channels implemented in STM32H755ZI. They are: \texttt{I2C1},
+\texttt{I2C2}, \texttt{I2C3}, and \texttt{I2C4}. All of these interfaces can
+be used in the 3 modes. These interfaces can also generate interrupts. And they
+can be enabled in the software.
+
+\alertImportant{
+    In order to use these interfaces in Fast-mode plus, we need to enable 20 mA output
+    current in the control bit present in SYSCFG register.
+}
+
+\paragraph{Modes for these Interfaces:}
+
+These interfaces can operate in one of the four modes:
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}m{4.5cm}
+            *{4}{>{\centering \arraybackslash}X}
+        }
+
+        \toprule
+
+        Modes & Slave Transmitter & Slave Receiver & Master Transmitter & Master Receiver \\
+
+        \bottomrule
+
+    \end{tabularx}
+\end{center}
+
+By default, the interface will operate in slave mode. Once it generates\footnote{From the software}
+a \texttt{START} condition, it will automatically switches to master mode. If the arbitration losses
+or a \texttt{STOP} condition is generated, it will automatically switches back to slave mode.
+
+\subsubsection{I2C Initialization}
+
+\begin{itemize}
+
+    \item First of all we need to configure and enable I2C peripheral clock in
+        the clock controller\footnote{In RCC}.
+
+    \item Then the interface can be enabled by setting PE bit in I2C\_CR1 register.
+
+\end{itemize}
+
+
 \end{document}

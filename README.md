@@ -1,0 +1,39 @@
+<p align = "center" >
+    <img src="./doc_images/1.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/2.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/3.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/4.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/5.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/6.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/7.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/8.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/9.svg" width="70%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/10.svg" width="70%">
+</p>

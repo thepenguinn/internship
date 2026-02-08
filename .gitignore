@@ -27,6 +27,7 @@ _minted/*
 *.out
 *.nav
 *.zip
+*.ptc
 *.run.xml
 *_standalone_*.tex
 *.nav

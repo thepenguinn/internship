@@ -6,6 +6,35 @@
 
 \section{WED - FEB 04 2026} \label{sec:}
 
+\subsection{UART Interfacing Exercise using STM32}
 
+\paragraph{Exercise Question:} Configure three UART interfaces on the development board.
+One UART is used as the ST-LINK virtual COM port and acts as the console interface.
+The application prompts the user through the console to enter a numeric value between 100
+and 10000 and to select a UART interface (UART2 or UART3).
+
+Based on the selected UART:
+
+\begin{itemize}
+    \item If UART2 is selected, the console displays the data received from UART3 multiplied by 2.
+    \item If UART3 is selected, the console displays the data received from UART2 multiplied by 2.
+\end{itemize}
+
+UART2 and UART3 are physically interconnected using jumper wires between their TX and RX
+pins to enable bidirectional communication.
+
+\subsubsection{Solution Overview}
+
+The USART3 is connected to the ST-LINK's UART. We can use USART1 and USART2 as the other two
+UARTs. All we need to do is to initialize these UARTs\footnote{Spoiler Alert: This can be done
+through STM32CubeMX, and all we need to do is to start using them.}. Then we need to
+set up the ISR\footnote{Interrupt Service Routine.} to process the received data. While the main
+task will handle the user input.
+
+\texttt{TODO: BLOCK DIAGRAM}
+
+\texttt{TODO: FLOW DIAGRAM}
+
+% \texttt{TODO: UART EXERCISE}
 
 \end{document}

@@ -31,7 +31,20 @@ through STM32CubeMX, and all we need to do is to start using them.}. Then we nee
 set up the ISR\footnote{Interrupt Service Routine.} to process the received data. While the main
 task will handle the user input.
 
-\texttt{TODO: BLOCK DIAGRAM}
+\subsubsection{Solution Overview}
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm_uart_block_diagram.pdf}
+    \captionof{figure} {Connection block diagram.}
+    \label{fig:uartBlockDiagram}
+\end{figure}
+
+% \texttt{TODO: BLOCK DIAGRAM}
 
 \texttt{TODO: FLOW DIAGRAM}
 

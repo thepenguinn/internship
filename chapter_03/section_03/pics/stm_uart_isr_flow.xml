@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="29.3.8">
+  <diagram name="Page-1" id="zx3ZBLf4aSF5gkrzdZqa">
+    <mxGraphModel dx="2037" dy="1113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-5" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="START" vertex="1">
+          <mxGeometry height="60" width="120" x="365" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-4" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-10" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-2" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Instance == USART 1" vertex="1">
+          <mxGeometry height="130" width="135" x="358" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-7" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="335" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-16" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="647.22" />
+            </Array>
+            <mxPoint x="210" y="399.99777777777786" as="sourcePoint" />
+            <mxPoint x="365.5" y="647.22" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-3" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Instance == USART 2" vertex="1">
+          <mxGeometry height="130" width="135" x="143" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-12" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Read and convert value to uint32_t from Gbuf2" vertex="1">
+          <mxGeometry height="105" width="175" x="338" y="282.5" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-13" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="628" y="495" />
+            </Array>
+            <mxPoint x="620" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Read and convert value to uint32_t from Gbuf1" vertex="1">
+          <mxGeometry height="105" width="175" x="540" y="132.5" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-15" edge="1" parent="1" source="qhFzzTzCSm9e4NOIahbV-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="qhFzzTzCSm9e4NOIahbV-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Double the value and print it to USART 3" vertex="1">
+          <mxGeometry height="110" width="155" x="348" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="END" vertex="1">
+          <mxGeometry height="60" width="120" x="365.5" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="NO" vertex="1">
+          <mxGeometry height="30" width="60" x="298" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="NO" vertex="1">
+          <mxGeometry height="30" width="60" x="150" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="qhFzzTzCSm9e4NOIahbV-20" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="YES" vertex="1">
+          <mxGeometry height="30" width="60" x="278" y="290" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

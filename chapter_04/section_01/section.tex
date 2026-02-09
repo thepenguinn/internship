@@ -1,0 +1,37 @@
+\documentclass[../../main]{subfiles}
+
+\input{section_header.tex}
+
+\begin{document}
+
+\section{MON - FEB 09 2026} \label{sec:}
+
+\subsection{UART - I2C Exercise}
+
+\paragraph{Exercise Question:} Configure two UART interfaces, one I2C interfaces and an onboard
+LED.
+
+Based on the command received location:
+
+\begin{itemize}
+    \item If command received from ST-LINK's UART, then relay that to the other UART.
+    \item If command received from the other UART, then relay that to the I2C.
+    \item If command received from I2C, do as such to the LED.
+\end{itemize}
+
+Then connect the other UART and I2C to another STM32 and test.
+
+\subsubsection{Solution Overview}
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm_uart_i2c_led_block.pdf}
+    \captionof{figure} {Connection block diagram of UART - I2C Exercise.}
+    \label{fig:blockUartI2C}
+\end{figure}
+
+\end{document}

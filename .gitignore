@@ -15,6 +15,7 @@ chapter_*/tikzpics/**/*.pdf
 chapter_*/section_*/tikzpics/**/*.pdf
 chapter_*/chapter.pdf
 _minted/*
+*.minted
 *.tstp
 *.aux
 *.log

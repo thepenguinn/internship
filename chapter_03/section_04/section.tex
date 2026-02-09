@@ -6,7 +6,179 @@
 
 \section{THU - FEB 05 2026} \label{sec:}
 
-\texttt{TODO: FORENOON UART EXERCISE}
+\subsection{UART Interfacing Exercise using STM32 (Continued)}
+
+\subsubsection{C Implementation}
+
+The execution flow can be divided into two, one that interacts with the user and
+the other that deals with the interrupt.
+
+\paragraph{main()}
+
+%%
+\begin{minted}[breaklines, autogobble] {c}
+    #include <string.h>
+
+    #define VALUE_READ_BUF_SIZE 128
+
+    char Gbuf1[4];
+    char Gbuf2[4];
+
+    void print_doubled(int val);
+    void send_int(UART_HandleTypeDef *dst_uart, uint32_t val);
+    uint32_t recv_int(char *buf);
+    void read_value(char *dst, uint16_t size);
+
+    int main(void) {
+        /*
+         * After initialization code
+         */
+
+        char ask_value_str[] = "Enter the value: ";
+        char ask_port_str[] = "Enter the port (0 == usart1 or 1 == usart2): ";
+
+        int value = 0;
+
+        char value_buf[VALUE_READ_BUF_SIZE];
+        char port_buf[2];
+
+        while (1) {
+            HAL_UART_Transmit(&huart3, (const uint8_t *) ask_value_str, sizeof(ask_value_str), HAL_MAX_DELAY);
+            read_value(value_buf, VALUE_READ_BUF_SIZE);
+            value = atoi(value_buf);
+
+            HAL_UART_Transmit(&huart3, (const uint8_t *) ask_port_str, sizeof(ask_port_str), HAL_MAX_DELAY);
+            read_value(port_buf, 2);
+
+            if (*port_buf == '0') {
+                HAL_UART_Receive_IT(&huart2, (uint8_t *) Gbuf2, sizeof(Gbuf2));
+                send_int(&huart1, value);
+            } else if (*port_buf == '1') {
+                HAL_UART_Receive_IT(&huart1, (uint8_t *) Gbuf1, sizeof(Gbuf1));
+                send_int(&huart2, value);
+            }
+        }
+    }
+
+\end{minted}
+
+As we can see, the main function constantly reads the value and port to send. Then
+depending on the port, sets the interrupt and sends the data.
+
+\paragraph{read\_value()}
+
+%%
+\begin{minted}[breaklines, autogobble] {c}
+    void read_value(char *dst, uint16_t size) {
+
+        char tmp;
+        char *ptr = dst;
+
+        while (1) {
+            HAL_UART_Receive(&huart3, (uint8_t *) &tmp, sizeof(tmp), HAL_MAX_DELAY);
+
+            if (tmp == '\r') {
+                HAL_UART_Transmit(&huart3, (const uint8_t *) "\n\r", 2, HAL_MAX_DELAY);
+                *ptr = '\0';
+                break;
+            } else if (tmp >= '0' && tmp <= '9') {
+                HAL_UART_Transmit(&huart3, (const uint8_t *) &tmp, sizeof(tmp), HAL_MAX_DELAY);
+                *ptr = tmp;
+                ptr++;
+            }
+
+        }
+
+    }
+\end{minted}
+
+\paragraph{send\_int()}
+
+%%
+\begin{minted}[breaklines, autogobble] {c}
+    void send_int(UART_HandleTypeDef *dst_uart, uint32_t val) {
+
+        int i;
+        uint8_t src;
+
+        for (i = 0; i < 4; i++) {
+            val = (val >> (i * 8));
+            src = val & 0xff;
+            HAL_UART_Transmit(dst_uart, (const uint8_t *) &src, sizeof(src), HAL_MAX_DELAY);
+        }
+
+    }
+\end{minted}
+
+\paragraph{recv\_int()}
+
+%%
+\begin{minted}[breaklines, autogobble] {c}
+    uint32_t recv_int(char *buf) {
+
+        int i;
+        uint32_t val = 0;
+
+        for (i = 0; i < 4; i++) {
+            val = val | (((uint32_t) *(buf + i)) << (i * 8));
+        }
+
+        return val;
+    }
+\end{minted}
+
+\paragraph{print\_doubled()}
+
+%%
+\begin{minted}[breaklines, autogobble] {c}
+    void print_doubled(int val) {
+
+        char value_buf[VALUE_READ_BUF_SIZE * 4];
+        int len;
+
+        char got[] = "Got: ";
+        char processed[] = "Processed: ";
+
+        HAL_UART_Transmit(&huart3, (const uint8_t *) got, sizeof(got), HAL_MAX_DELAY);
+
+        sprintf(value_buf, "%d", val);
+        len = strlen(value_buf);
+        HAL_UART_Transmit(&huart3, (const uint8_t *) value_buf, len, HAL_MAX_DELAY);
+
+        HAL_UART_Transmit(&huart3, (const uint8_t *) " ", 1, HAL_MAX_DELAY);
+
+        HAL_UART_Transmit(&huart3, (const uint8_t *) processed, sizeof(processed), HAL_MAX_DELAY);
+
+        sprintf(value_buf, "%d", val * 2);
+        len = strlen(value_buf);
+        HAL_UART_Transmit(&huart3, (const uint8_t *) value_buf, len, HAL_MAX_DELAY);
+
+        HAL_UART_Transmit(&huart3, (const uint8_t *) "\n\r", 2, HAL_MAX_DELAY);
+    }
+\end{minted}
+
+\paragraph{HAL\_UART\_RxCpltCallback(): The Callback Function}
+
+%%
+\begin{minted}[breaklines, autogobble] {c}
+    void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
+        uint32_t tmp;
+
+        if (huart->Instance == USART1) {
+            tmp = recv_int(Gbuf1);
+        } else if (huart->Instance == USART2) {
+            tmp = recv_int(Gbuf2);
+        }
+
+        print_doubled(tmp);
+
+        return;
+
+    }
+\end{minted}
+
+% \texttt{TODO: FORENOON UART EXERCISE}
 
 \subsection{USB On The Go}
 

@@ -31,7 +31,7 @@ through STM32CubeMX, and all we need to do is to start using them.}. Then we nee
 set up the ISR\footnote{Interrupt Service Routine.} to process the received data. While the main
 task will handle the user input.
 
-\subsubsection{Solution Overview}
+\subsubsection{Connection Block Diagram}
 
 \begin{figure} [H]
     \centering
@@ -44,10 +44,32 @@ task will handle the user input.
     \label{fig:uartBlockDiagram}
 \end{figure}
 
-% \texttt{TODO: BLOCK DIAGRAM}
+\subsubsection{Main Task Flow}
 
-\texttt{TODO: FLOW DIAGRAM}
+\begin{figure} [H]
+    \centering
+    \includegraphics [
+        width = 0.8\textwidth,
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm_uart_main_flow.pdf}
+    \captionof{figure} {Flow of main task / thread.}
+    \label{fig:uartMainFlow}
+\end{figure}
 
-% \texttt{TODO: UART EXERCISE}
+\subsubsection{ISR Task Flow}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [
+        width = 0.8\textwidth,
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm_uart_isr_flow.pdf}
+    \captionof{figure} {Flow of ISR task / thread.}
+    \label{fig:uartISRFlow}
+\end{figure}
 
 \end{document}

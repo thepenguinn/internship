@@ -1,4 +1,4 @@
-Generated on: Mon Feb  9 07:56:34 AM IST 2026
+Generated on: Mon Feb  9 09:47:04 AM IST 2026
 
 Please find the actual pdf version of the document at the root of this
 repo named `internship_report.pdf`.
@@ -65,4 +65,12 @@ repo named `internship_report.pdf`.
 
 <p align = "center" >
     <img src="./doc_images/16.svg" width="90%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/17.svg" width="90%">
+</p>
+
+<p align = "center" >
+    <img src="./doc_images/18.svg" width="90%">
 </p>

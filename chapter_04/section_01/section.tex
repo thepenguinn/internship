@@ -34,4 +34,42 @@ Then connect the other UART and I2C to another STM32 and test.
     \label{fig:blockUartI2C}
 \end{figure}
 
+\subsubsection{Some Important Registers Related with I2C}
+
+\texttt{TODO: MOVE THIS TO SOMEWHERE ELSE}
+
+Registers:
+
+\begin{itemize}
+    \item I2C\_CR1
+
+    \item I2C\_TIMINGR
+
+        \begin{itemize}
+            \item PRESC[3:0]
+            \item SCLDEL[3:0]
+            \item SDADEL[3:0]
+        \end{itemize}
+
+    \item I2C\_CR2
+    \item I2C\_ISR
+
+    \item I2C\_RXDR
+
+    \item RXNE bit should be zero to receive.
+
+    \item I2C\_TXDR
+
+    \item TXE bit should be zero to send.
+
+    \item NBYTES[7:0] in I2C\_CR2
+
+    \item I2C\_OAR1
+    \item I2C\_OAR2
+
+\end{itemize}
+
+
+
+
 \end{document}

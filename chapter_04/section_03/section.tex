@@ -6,7 +6,7 @@
 
 \section{WED - FEB 11 2026} \label{sec:}
 
-\subsection{SPI: Serial Peripheral Interface of STM32H755ZI}
+\subsection{SPI: Serial Peripheral Interface}
 
 Serial peripheral interface is used for synchronous serial communication in
 embedded systems for short distance wired communication. The standard SPI supports
@@ -72,6 +72,13 @@ The standard SPI makes use of 4 pins in total. They are:
 From figure \ref{fig:spiPinConnection} we can see that the \texttt{SCLK}, \texttt{MOSI}, and \texttt{MISO} lines are common
 to all the slaves. Each of the slave device will have it's corresponding $\overline{\texttt{CS}}$ line.
 
+\alertTip{
+    Figure \ref{fig:spiPinConnection} shows the regular mode setup. As the number of devices increases the
+    number of $\overline{\texttt{CS}}$ lines needed also increases. That might become a problem. One way to
+    solve this issue is to use a decoder to generate the $\overline{\texttt{CS}}$ lines. There is another
+    way to solve this issue by using \textbf{daisy-chain}\footnote{Look up daisy-chaining SPI for more info.} method.
+}
+
 \alertNote{
     Native SPI does not support multi-master configuration. In order to use multi-master we need
     some way to perform master arbitration. STM32H755ZI's reference manual also does not mention
@@ -98,7 +105,7 @@ falling edge, depending on the device.} of the \texttt{SCLK}.
 \subsubsection{SPI Modes: Clock Polarity and Clock Phase}
 
 SPI has four modes, the master can choose these modes using CPOL\footnote{Clock Polarity.} and
-CPHA\footnote{Clock Phase} bits. See table \ref{tbl:spiModes} for the corresponding polarity and phase.
+CPHA\footnote{Clock Phase.} bits. See table \ref{tbl:spiModes} for the corresponding polarity and phase.
 
 \begin{center}
     \begin{tabularx} {\textwidth} {
@@ -127,6 +134,10 @@ CPHA\footnote{Clock Phase} bits. See table \ref{tbl:spiModes} for the correspond
     \label{tbl:spiModes}
 \end{center}
 
+\subsubsection{Data Frame}
 
+The neat thing about SPI is that it does not define any standard data frame. This allows
+the users to set the frame as we wish. This also means that interfacing\footnote{From the
+data frame's perspective.} will be different to each slave devices.
 
 \end{document}

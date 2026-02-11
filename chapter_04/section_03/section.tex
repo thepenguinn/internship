@@ -6,6 +6,69 @@
 
 \section{WED - FEB 11 2026} \label{sec:}
 
-\subsection{SPI Interface in STM32H755ZI}
+\subsection{SPI: Serial Peripheral Interface of STM32H755ZI}
+
+Serial peripheral interface is used for synchronous serial communication in
+embedded systems for short distance wired communication. The standard SPI supports
+full duplex\footnote{Two way communication at the same time}. It follows a
+master-slave architecture. The master orchestrates the communication to and from
+one or more slave devices.
+
+\subsubsection{Pin Description and Connection}
+
+The standard SPI makes use of 4 pins in total. They are:
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}X
+            *{4}{>{\centering \arraybackslash}X}
+        }
+
+        \toprule
+
+        Pin & $\overline{\texttt{CS}}$ & \texttt{CLK} & \texttt{MOSI}\footnote{Master Out Slave In.} & \texttt{MISO}\footnote{Master In Slave Out.} \\ \midrule
+
+        Function & Chip Select & Clock & Data to Slave from Master & Data to Master from Slave \\
+
+        \bottomrule
+
+    \end{tabularx}
+\end{center}
+
+\begin{center}
+    \begin{figure}
+        %text%
+        \begin{verbatim}
+             +-----------------+               +-----------------+
+             |                 |               |                 |
+             |            CS1# +-------------->| CS#             |
+             |                 |               |                 |
+             |            CLK  +--------+----->| CLK             |
+             |                 |        |      |                 |
+             |            MOSI +-----+-------->| MOSI            |
+             |                 |     |  |      |                 |
+             |            MISO |<-+------------+ MISO            |
+             |                 |  |  |  |      |                 |
+             |  MASTER         |  |  |  |      |        SLAVE 1  |
+             |            CS2# |  |  |  |      |                 |
+             +-------------+---+  |  |  |      +-----------------+
+                           |      |  |  |      +-----------------+
+                           |      |  |  |      |                 |
+                           |      |  |  +----->| CLK             |
+                           |      |  |         |                 |
+                           |      |  +-------->| MOSI            |
+                           |      |            |                 |
+                           |      +------------+ MISO            |
+                           |                   |                 |
+                           +------------------>| CS#    SLAVE 2  |
+                                               |                 |
+                                               +-----------------+
+        \end{verbatim}
+        \captionof{figure} {Typical connection diagram of MOSI, MISO, CLK, and $\overline{\mbox{CSx}}$ pins in a single master SPI application.}
+        \label{fig:}
+    \end{figure}
+\end{center}
+
+
 
 \end{document}

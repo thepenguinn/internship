@@ -26,9 +26,9 @@ The standard SPI makes use of 4 pins in total. They are:
 
         \toprule
 
-        Pin & $\overline{\texttt{CS}}$ & \texttt{CLK} & \texttt{MOSI}\footnote{Master Out Slave In.} & \texttt{MISO}\footnote{Master In Slave Out.} \\ \midrule
+        Pin & $\overline{\texttt{CS}}$ & \texttt{SCLK} & \texttt{MOSI}\footnote{Master Out Slave In.} & \texttt{MISO}\footnote{Master In Slave Out.} \\ \midrule
 
-        Function & Chip Select & Clock & Data to Slave from Master & Data to Master from Slave \\
+        Function & Chip Select & Serial Clock & Data to Slave from Master & Data to Master from Slave \\
 
         \bottomrule
 
@@ -43,7 +43,7 @@ The standard SPI makes use of 4 pins in total. They are:
              |                 |               |                 |
              |            CS1# +-------------->| CS#             |
              |                 |               |                 |
-             |            CLK  +--------+----->| CLK             |
+             |            SCLK +--------+----->| SCLK            |
              |                 |        |      |                 |
              |            MOSI +-----+-------->| MOSI            |
              |                 |     |  |      |                 |
@@ -54,7 +54,7 @@ The standard SPI makes use of 4 pins in total. They are:
              +-------------+---+  |  |  |      +-----------------+
                            |      |  |  |      +-----------------+
                            |      |  |  |      |                 |
-                           |      |  |  +----->| CLK             |
+                           |      |  |  +----->| SCLK            |
                            |      |  |         |                 |
                            |      |  +-------->| MOSI            |
                            |      |            |                 |
@@ -64,9 +64,67 @@ The standard SPI makes use of 4 pins in total. They are:
                                                |                 |
                                                +-----------------+
         \end{verbatim}
-        \captionof{figure} {Typical connection diagram of MOSI, MISO, CLK, and $\overline{\mbox{CSx}}$ pins in a single master SPI application.}
-        \label{fig:}
+        \captionof{figure} {Typical connection diagram of MOSI, MISO, SCLK, and $\overline{\mbox{CSx}}$ pins in a single master SPI application.}
+        \label{fig:spiPinConnection}
     \end{figure}
+\end{center}
+
+From figure \ref{fig:spiPinConnection} we can see that the \texttt{SCLK}, \texttt{MOSI}, and \texttt{MISO} lines are common
+to all the slaves. Each of the slave device will have it's corresponding $\overline{\texttt{CS}}$ line.
+
+\alertNote{
+    Native SPI does not support multi-master configuration. In order to use multi-master we need
+    some way to perform master arbitration. STM32H755ZI's reference manual also does not mention
+    about any inbuilt way to use the SPI in mutli-master mode.
+}
+
+\alertImportant{
+    MISO line should be tri-stated, as it needs to be driven from different slaves at different
+    times depending on the state of the corresponding chip select pin.
+}
+
+\alertNote{
+    MISO and MOSI are also called SDI\footnote{Serial Data In.} and SDO\footnote{Serial Data Out.}
+    respectively.
+}
+
+\subsubsection{Data Transmission}
+
+The master initiates the transaction by asserting the corresponding $\overline{\texttt{CS}}$ line. The
+clock is also provided by the master. Full duplex communication is carried out by the master and the
+selected slave. The data is sampled or pushed out at the edge\footnote{Can be configured to rising or
+falling edge, depending on the device.} of the \texttt{SCLK}.
+
+\subsubsection{SPI Modes: Clock Polarity and Clock Phase}
+
+SPI has four modes, the master can choose these modes using CPOL\footnote{Clock Polarity.} and
+CPHA\footnote{Clock Phase} bits. See table \ref{tbl:spiModes} for the corresponding polarity and phase.
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\centering \arraybackslash}p{1cm}
+            >{\centering \arraybackslash}p{1cm}
+            >{\centering \arraybackslash}p{1cm}
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            >{\centering \arraybackslash}X
+            % *{4}{>{\centering \arraybackslash}X}
+        }
+
+        \toprule
+
+        SPI Mode & CPOL & CPHA & Clock Polarity in Idle State & Clock Phase Used to Sample Data & Clock Phase Used to Shift the Data \\ \midrule
+
+        0 & 0 & 0 & Logic Low  & Rising Edge  & Falling Edge \\
+        1 & 0 & 1 & Logic Low  & Falling Edge & Rising Edge  \\
+        2 & 1 & 0 & Logic High & Falling Edge & Rising Edge  \\
+        3 & 1 & 1 & Logic High & Rising Edge  & Falling Edge \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \captionof{table}{CPOL and CPOH states and corresponding clock polarity and edge selections for sampling and shifting data.}
+    \label{tbl:spiModes}
 \end{center}
 
 

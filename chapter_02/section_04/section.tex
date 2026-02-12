@@ -15,22 +15,28 @@
 
 \subsection{Architecture of Nucleo-H755ZI-Q}
 
-%text%
-\begin{minted}[breaklines, autogobble] {text}
 
-                      +-------------------------+
-                      |  +-------+   +-------+  |
-                      |  |  CM7  | + |  CM4  |  |
-    +--------+        |  +-------+   +-------+  |
-    | STLINK | <----> |                         |
-    +--------+        |                         |
-                      |        +-------------+  |
-                      |        | PERIPHERALS |  |
-                      |        +-------------+  |
-                      |                         |
-                      | NUCLEO-H755ZI-Q         |
-                      +-------------------------+
-\end{minted}
+\begin{center}
+    \begin{figure}
+        %text%
+        \begin{verbatim}
+                                   +-------------------------+
+                                   |  +-------+   +-------+  |
+                                   |  |  CM7  | + |  CM4  |  |
+                 +--------+        |  +-------+   +-------+  |
+                 | STLINK | <----> |                         |
+                 +--------+        |                         |
+                                   |        +-------------+  |
+                                   |        | PERIPHERALS |  |
+                                   |        +-------------+  |
+                                   |                         |
+                                   | NUCLEO-H755ZI-Q         |
+                                   +-------------------------+
+        \end{verbatim}
+        \captionof{figure} {Rough architecture of Nucleo-H755ZI-Q.}
+        \label{fig:stmNucleoRough}
+    \end{figure}
+\end{center}
 
 Nucleo-H755ZI-Q has a asymmetric dual core architecture, having two cores
 Arm Cortex M7 and Arm Cortex M4.

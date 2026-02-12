@@ -130,7 +130,7 @@ CPHA\footnote{Clock Phase.} bits. See table \ref{tbl:spiModes} for the correspon
         \bottomrule
 
     \end{tabularx}
-    \captionof{table}{CPOL and CPOH states and corresponding clock polarity and edge selections for sampling and shifting data.}
+    \captionof{table}{CPOL and CPHA states and corresponding clock polarity and edge selections for sampling and shifting data.}
     \label{tbl:spiModes}
 \end{center}
 
@@ -139,5 +139,70 @@ CPHA\footnote{Clock Phase.} bits. See table \ref{tbl:spiModes} for the correspon
 The neat thing about SPI is that it does not define any standard data frame. This allows
 the users to set the frame as we wish. This also means that interfacing\footnote{From the
 data frame's perspective.} will be different to each slave devices.
+
+\subsection{SPI: Serial Peripheral Interface of STM32H755ZI}
+
+STM32H755ZI's has 6 SPI instances. And they supports full-duplex, half-duplex and simplex transactions.
+It has multi-master mode and multi-slave mode capabilities. The SS\footnote{Slave Select.} can
+be managed by both the hardware and software. Can configure SS signal polarity and timing. MISO and
+MOSI swappable. Configurable polarity and phase using CPOL and CPHA bits. Configurable data order (choosing
+whether to MSB or LSB first). SPI Motorola and TI formats supported. Hardware CRC feature.
+
+Relevant registers:
+
+\begin{itemize}
+    \item SPI\_CFG2.
+    \item COMM[1:0] bits.
+
+\end{itemize}
+
+\texttt{TODO: REST OF SPI}
+
+\subsection{QUADSPI of STM32H755ZI}
+
+Along with SPI, STM32H755ZI features a QUADSPI.
+
+\alertNote{
+    This QUADSPI can interface single-, dual-, or quad-SPI devices.
+}
+
+QUADSPI in STM32H755ZI have 3 modes of operation:
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}p{3.75cm}
+            >{\raggedright \arraybackslash}X
+            % *{4}{>{\centering \arraybackslash}X}
+        }
+
+        \toprule
+
+        Mode & Description \\ \midrule
+
+        Indirect Mode & The operations are done using the QUADSPI registers. \\
+        Automatic Static-Polling Mode & External memory registers are periodically read, and can generated an interrupt in case of flag change.\\
+        Memory-Mapped Mode & External memory is mapped to the device address space and can be seen by the system as if it was the internal memory.\\
+
+        \bottomrule
+
+    \end{tabularx}
+    \captionof{table}{STM32H755ZI's QUADSPI modes.}
+    \label{tbl:spiSTMModes}
+\end{center}
+
+\subsubsection{QUADSPI: Main Features}
+
+\begin{itemize}
+    \item 3 Functional modes: indirect, automatic static-polling, and memory-mapped modes.
+    \item Dual-flash mode: 8 bits can be sent / received simultaneously by accessing two flash memories in parallel.
+    \item SDR\footnote{Single Data Read.} and DDR\footnote{Double Data Read.} support.
+    \item Fully programmable opcodes for both indirect and memory-mapped modes.
+    \item Fully programmable frame format for both indirect and memory-mapped modes.
+    \item 8-, 16-, 32-bit data access.
+\end{itemize}
+
+\subsubsection{QUADSPI Command Sequence: While }
+
+\texttt{TODO: REST OF QUADSPI}
 
 \end{document}

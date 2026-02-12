@@ -50,13 +50,25 @@ Arm Cortex M7 and Arm Cortex M4.
     Symmetric Multi-processing: All have equal access to memory and resources.
 }
 
-\subsubsection{Power Domains}
+\begin{figure} [H]
+    \centering
+    \includegraphics [
+        % height = 0.55\textheight,
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm32_arch.pdf}
+    \captionof{figure} {STM32H755ZI Architecture.}
+    \label{fig:stm32Arch}
+\end{figure}
+
+\subsubsection{Sub-systems}
 
 The entire MCU is divided into 3 major power domains.
 
 \begin{itemize}
-    \item D1: Where the M7 lies
-    \item D2: Where the M4 lies
+    \item D1: Where the M7 lies.
+    \item D2: Where the M4 lies.
     \item D3: Where the RCC and PWR lies.
     \item BACKUP Domain: Where the EXTI lies.
 \end{itemize}
@@ -120,18 +132,65 @@ The entire MCU is divided into 3 major power domains.
 \alertImportant{
     From figure \ref{fig:stm32Arch}, we can see that the \texttt{EXTI}\footnote{External Interrupt Controller} is
     outside of the 3 domains. This enables to power down all 3 of these domains at the same time.
+    Then \texttt{EXTI}'s domain can be kept active, and \texttt{EXTI} will be responsible for powering
+    up the required domains to serve interrupts.
 }
 
-\begin{figure} [H]
-    \centering
-    \includegraphics [
-        % height = 0.55\textheight,
-        max width = \IGXMaxWidth,
-        max height = \IGXMaxHeight,
-        \IGXDefaultOptionalArgs,
-    ] {pics/stm32_arch.pdf}
-    \captionof{figure} {STM32 Architecture.}
-    \label{fig:stm32Arch}
-\end{figure}
+\subsubsection{D1 sub-system}
+
+D1 domain is intended for high performance applications. Has a high bandwidth AXI bus matrix. The Cortex
+M7 core is located here running at up to 480MHz with 16-Kbyte I-cache and 16-Kbyte D-cache.
+
+\alertNote{
+    \textbf{Internal Memory Resources:}
+
+    \begin{itemize}
+        \item AXI SRAM (512-Kbyte) mapped at address \texttt{0x2400 0000}.
+        \item ITCM\footnote{Instruction Tightly Coupled Memory.} accessible through 64-bit ITCM bus.
+        \item DTCM\footnote{Data Tightly Coupled Memory.} accessible through 2x32-bit DTCM bus.
+        \item Flash memory: Two 1MB independent flash banks.
+    \end{itemize}
+}
+
+\subsubsection{D2 sub-system}
+
+The D2 domain is intended for generic peripheral usage, communication and data gathering that can be
+processed later in D1 domain. It contains Cortex M4 core running at up to 240MHz.
+
+\alertNote{
+    \textbf{Internal Memory Resources:}
+
+    \begin{itemize}
+        \item AHB SRAM1 (128 KByte) mapped at address \texttt{0x3000 0000} and \texttt{0x1000 0000}.
+        \item AHB SRAM2 (128 KByte) mapped at address \texttt{0x3002 0000} and \texttt{0x1002 0000}.
+        \item AHB SRAM3 (32 KByte) mapped at address \texttt{0x3004 0000} and \texttt{0x1004 0000}.
+    \end{itemize}
+}
+
+\subsubsection{D3 sub-system}
+
+The D3 domain provides system management and low power operating modes feature. It contains peripherals
+like PWR, RCC, ADCs, GPIOs. It has a AHB bus matrix, and a BDMA\footnote{Basic DMA.} It also contains
+the communication peripherals like I2C, SPI, LPUART.
+
+\alertNote{
+    \textbf{Internal Memory Resources:}
+
+    \begin{itemize}
+        \item AHB SRAM4 (128 KByte) mapped at address \texttt{0x3000 0000}.
+    \end{itemize}
+}
+\subsubsection{Peripherals}
+
+From figure \ref{fig:stm32Arch} we can see that different peripherals are in different power domains.
+Each domain has it's own bus matrix. There are inter domain buses for communication across domains. In
+D1, 64-bit AXI\footnote{Advanced eXtensible Interface.} bus is used. D2 and D3 domains use 32-bit
+AHB\footnote{Advanced High Performance} buses.
+
+\alertNote{
+    Most of the communication peripherals are located in the D2 domain. For example, USB, Ethernet,
+    FDCAN, UART, SPI, and SD/MMC are located here. Most of the memories dedicated to I/O
+    processing are also located here.
+}
 
 \end{document}

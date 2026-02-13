@@ -12,40 +12,112 @@
 
 \begin{enumerate}
 
+    \item Product Overview.
     \item Block Diagram.
     \item Power Calculation.
     \item Interfaces.
     \item Interfacing Diagram.
     \item PCB layout Guidelines.
-    \item Mechanical  Guidelines.
+    \item Mechanical Guidelines.
 
 \end{enumerate}
 
 \subsubsection{Design Question:}
 
-Controlling a camera
+Design a system to control a camera with STM32. The system should take input from a joystick and
+6 push buttons. For debugging purposes we need an OLED display and JTAG interface.
 
 % \begin{enumerate}
 %
 % \end{enumerate}
 
 \subsubsection{STM32H745ZI: Power}
+
+The required supply voltage is 1.2V to 3.3V.
+
 \subsubsection{STM32H745ZI: Interfaces}
 
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}X
+            *{3}{>{\raggedright \arraybackslash}X}
+        }
+
+        \toprule
+
+        Device & \multicolumn{3}{l}{Available Interfaces} \\ \midrule
+
+        STM32H745ZI & 4 x I2C & 4 x USART & 6 x SPI \\
+        & 2 x CAN & 2 x USB OTG & Ethernet \\
+        & HDMI & 2 x SD/SDIO/MMC & MDIO Slave \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \captionof{table}{Some of the interfaces available in STM32H745ZI.}
+\end{center}
 
 \subsubsection{Joy Stick 67A-DF-IC-060C: Power}
-\subsubsection{Joy Stick 67A-DF-IC-060C: Interfaces}
 
-\subsubsection{Switches: Functions}
+Required power supply is $3.3\si{V} \pm 0.3\si{V}$.
+
+\subsubsection{OLED: Power}
+
+Required power supply is $3.3\si{V}$ to $5\si{V}$. We will be driving it using $3.3\si{V}$.
+
+\subsubsection{Interfaces Used in the System}
+
+\begin{center}
+    \begin{tabularx} {\textwidth} {
+            >{\raggedright \arraybackslash}p{6cm}
+            *{3}{>{\raggedright \arraybackslash}X}
+        }
+
+        \toprule
+
+        Device & \multicolumn{3}{l}{Interfaces Used} \\ \midrule
+
+        STM32H745ZI & I2C & UART & JTAG \\
+        Joy Stick 67A-DF-IC-060C & I2C & & \\
+        OLED Display & I2C & & \\
+        External Camera & UART & & \\
+        External Debugger & JTAG & & \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \captionof{table}{Devices and Interfaces Used.}
+\end{center}
+
+% \subsubsection{Switches: Functions}
+%
+% \begin{enumerate}
+%     \item HOME
+%     \item RESET
+%     \item LEFT
+%     \item RIGHT
+%     \item UP
+%     \item DOWN
+% \end{enumerate}
+
+\subsubsection{Design: Parts / Components}
 
 \begin{enumerate}
-    \item HOME
-    \item RESET
-    \item LEFT
-    \item RIGHT
-    \item UP
-    \item DOWN
+    \item 1.3 inch OLED: 3647-26295-ND
 \end{enumerate}
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm_joy_cam_block_diagram.pdf}
+    \captionof{figure} {Block Diagram.}
+    \label{fig:}
+\end{figure}
+
+
 
 
 

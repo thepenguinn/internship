@@ -1,0 +1,377 @@
+\tikzset{
+
+    figureTikzPicStyle/.style = {
+        scale = 1,
+        transform shape,
+        %> = stealth,
+        %shorten > = 0.5cm,
+        %shorten < = 0.5cm,
+    },
+
+    absIOBlock/.style = {
+        ultra thick,
+        rectangle,
+        draw = fgcol,
+        rounded corners = 0.5cm,
+        inner sep = 0.6cm,
+        outer sep = 0.4cm,
+        text width = 5cm,
+        text centered,
+        minimum height = 1.5cm,
+        font = \LARGE,
+    },
+
+    absTinyMLModule/.style = {
+        fill = red!30!white,
+        ultra thick,
+        rectangle,
+        draw = fgcol,
+        rounded corners = 0.5cm,
+        inner sep = 0.75cm,
+        minimum height = 4cm,
+        minimum width = 7cm,
+        outer sep = 0.75cm,
+        text width = 5cm,
+        text centered,
+        font = \LARGE,
+    },
+
+    absModule/.style = {
+        ultra thick,
+        rectangle,
+        draw = fgcol,
+        rounded corners = 0.5cm,
+        inner sep = 0.5cm,
+        minimum height = 2cm,
+        outer sep = 0.75cm,
+        text width = 3cm,
+        text centered,
+        font = \LARGE,
+    },
+
+    absSTMModule/.style = {
+        ultra thick,
+        rectangle,
+        draw = fgcol,
+        rounded corners = 0.5cm,
+        inner sep = 0.5cm,
+        minimum height = 4cm,
+        % outer sep = 0.75cm,
+        % text width = 3cm,
+        text centered,
+        font = \LARGE,
+    },
+
+    absOtherModule/.style = {
+        ultra thick,
+        rectangle,
+        draw = fgcol,
+        rounded corners = 0.5cm,
+        inner sep = 0.5cm,
+        minimum height = 3cm,
+        % outer sep = 0.75cm,
+        % text width = 3cm,
+        text centered,
+        font = \LARGE,
+    },
+
+    absOuterModule/.style = {
+        colorMerlinBlue,
+        inner sep = 0cm,
+        outer sep = 0.75cm,
+        ultra thick,
+    },
+
+    absInnerLabel/.style = {
+        inner sep = 1cm,
+        outer sep = 0.5cm,
+    },
+
+    absOuterLabel/.style = {
+        colorMerlinBlue,
+    },
+
+    %% DUInterConnectStart
+    DUInterConnectFromNoneToNone/.style = {
+    },
+    DUInterConnectFromNoneToOpen/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 1
+                with {
+                    \draw [fill = bgcol] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromNoneToOpen/.default = 4pt,
+
+    DUInterConnectFromNoneToFill/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 1
+                with {
+                    \filldraw [] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromNoneToFill/.default = 4pt,
+
+    %%
+    DUInterConnectFromOpenToNone/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \draw [fill = bgcol] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromOpenToNone/.default = 4pt,
+
+    DUInterConnectFromOpenToOpen/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \draw [fill = bgcol] circle [radius = #1];
+                },
+            },
+            mark={
+                at position 1
+                with {
+                    \draw [fill = bgcol] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromOpenToOpen/.default = 4pt,
+
+    DUInterConnectFromOpenToFill/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \draw [fill = bgcol] circle [radius = #1];
+                },
+            },
+            mark={
+                at position 1
+                with {
+                    \filldraw [] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromOpenToFill/.default = 4pt,
+    %%
+
+    DUInterConnectFromFillToNone/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \filldraw [] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromFillToNone/.default = 4pt,
+
+    DUInterConnectFromFillToOpen/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \filldraw [] circle [radius = #1];
+                },
+            },
+            mark={
+                at position 1
+                with {
+                    \draw [fill = bgcol] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromFillToOpen/.default = 4pt,
+
+    DUInterConnectFromFillToFill/.style = {
+        decoration={
+            markings,
+            mark={
+                at position 0
+                with {
+                    \filldraw [] circle [radius = #1];
+                },
+            },
+            mark={
+                at position 1
+                with {
+                    \filldraw [] circle [radius = #1];
+                },
+            },
+        },
+        postaction=decorate,
+    }, DUInterConnectFromFillToFill/.default = 4pt,
+    %% DUInterConnectEnd
+
+    innerEnclosure/.style = {
+        pattern = {Lines[
+            distance = 5mm,
+            angle = 45,
+            line width = 0.2mm,
+        ]},
+        ultra thick,
+        rectangle,
+        draw = colorShadowGray,
+        rounded corners = 1cm,
+        inner sep = 0cm,
+        outer sep = 0cm,
+    },
+
+    finishedBoard/.style = {
+        fill = bgcol,
+        ultra thick,
+        rectangle,
+        draw = black,
+        rounded corners = 0.75cm,
+        inner sep = 0cm,
+        outer sep = 0cm,
+    },
+
+    unfinishedBoard/.style = {
+        fill = bgcol,
+        dashdotted,
+        ultra thick,
+        draw = black,
+        rectangle,
+        rounded corners = 0.75cm,
+        inner sep = 0cm,
+        outer sep = 0cm,
+    },
+
+    otherBoard/.style = {
+        fill = bgcol,
+        ultra thick,
+        rectangle,
+        draw = black,
+        rounded corners = 0.75cm,
+        inner sep = 0cm,
+        outer sep = 0cm,
+    },
+
+    %pics/innerEnclosure/.style args={#1/#2}{
+    %    code = {
+    %        \draw [
+    %            colorShadowGray,
+    %            rounded corners = 1cm,
+    %            outer sep = 1cm,
+    %        ] (#1) rectangle (#2) ;
+    %    },
+    %},
+
+    innerConnect/.style = {
+        rounded corners = 0.75cm,
+        colorShadowGray,
+        very thick,
+        DUInterConnectFromOpenToOpen,
+    },
+
+    outerConnectTo/.style = {
+        colorMerlinBlue,
+        very thick,
+        DUInterConnectFromFillToOpen,
+    },
+
+    outerConnectFrom/.style = {
+        colorMerlinBlue,
+        very thick,
+        DUInterConnectFromOpenToFill,
+    },
+
+}
+
+%% <name> <corner> <oppCorner>
+\newcommand\innerEnclosureNode[3] {
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$)
+    node (#1) [
+        innerEnclosure,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+    ] {}
+    ;
+}
+
+%% <name> <corner> <oppCorner> <text>
+\newcommand\finishedBoardNode[4] {
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$)
+    node (#1) [
+        finishedBoard,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+    ] {\LARGE #4}
+    ;
+}
+
+%% <name> <corner> <oppCorner> <text>
+\newcommand\unfinishedBoardNode[4] {
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$)
+    node (#1) [
+        unfinishedBoard,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+    ] {\LARGE #4}
+    ;
+}
+
+%% <name> <corner> <oppCorner> <text>
+\newcommand\otherBoard[4] {
+    \draw
+    let \p{TEMPDIMA} = ($(#2)-(#3)$),
+    \n{TEMPDIMX} = {veclen(\x{TEMPDIMA}, 0)},
+    \n{TEMPDIMY} = {veclen(0, \y{TEMPDIMA})}
+    in
+    ($(#2)!0.50!(#3)$)
+    node (#1) [
+        otherBoard,
+        minimum height = \n{TEMPDIMY},
+        minimum width = \n{TEMPDIMX},
+        anchor = center,
+    ] {\LARGE #4}
+    ;
+}
+\subtikzpicturedef{subFigBase} {
+    origin%
+} {
+    \draw (#1-start) coordinate (#1-origin);
+}
+
+\subtikzpictureactivate{subFigBase}

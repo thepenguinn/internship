@@ -1,0 +1,39 @@
+\begin{tikzpicture} [
+    ]
+
+    \draw (0, 0) coordinate (origin) ;
+
+    \subFigBase {figBase} {origin} {origin}
+
+    \draw
+    (origin)
+    node (stm) [absSTMModule] {\texttt{STM32H755ZI}}
+
+    (stm.east) ++(2cm, 0)
+    node (other) [anchor = west, absOtherModule] {\texttt{JOY STICK}}
+    ;
+
+    \draw [
+        <->,
+        very thick,
+    ]
+    (stm.east) ++(0, 0.6) coordinate (sda)
+    (sda) -- (other.west |- sda)
+    ;
+
+    \draw [
+        ->,
+        very thick,
+    ]
+    (stm.east) ++(0, -0.6) coordinate (scl)
+    (scl) -- (other.west |- scl)
+    ;
+
+    \draw [
+    ]
+    (stm.east) ++(1cm, 0) coordinate (mid)
+    % ()
+
+    ;
+
+\end{tikzpicture}

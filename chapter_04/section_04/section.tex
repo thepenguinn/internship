@@ -156,6 +156,15 @@ respective rails.
     \label{fig:interJoy}
 \end{figure}
 
+\alertImportant{
+    Pull-ups for \texttt{SDA} and \texttt{SCL} are taken as $1.5\si{k}$ as recommended in
+    the interfacing diagram from the datasheet. The pull-up for \texttt{INTn} is taken as
+    $10\si{k}$. See figure \ref{fig:joyInterGuide} for more info.
+}
+
+As we can see from the figure \ref{fig:interJoy} the joy stick is interfaced
+through I2C, with an extra interrupt pin.
+
 \alertNote{
 
     Along with \texttt{SCL} and \texttt{SDA} pins, the joy stick also provides an \texttt{INTn}
@@ -177,9 +186,6 @@ respective rails.
     \end{figure}
 }
 
-As we can see from the figure \ref{fig:interJoy} the joy stick is interfaced
-through I2C, with an extra interrupt pin.
-
 \subsubsection{Interfacing Diagram: OLED}
 
 \begin{figure}
@@ -193,6 +199,12 @@ through I2C, with an extra interrupt pin.
     \captionof{figure} {Interfacing diagram of oled display with STM32H745ZI.}
     \label{fig:interOled}
 \end{figure}
+
+\alertImportant{
+    We will be using the same I2C bus used by the Joy stick module. Therefore,
+    as mentioned there, the $1.5\si{k}$ is taken as the pull-ups for \texttt{SDA} and \texttt{SCL}
+    lines.
+}
 
 As we can see from the figure \ref{fig:interOled} the OLED display is interfaced
 through I2C.

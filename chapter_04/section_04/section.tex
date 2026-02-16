@@ -157,9 +157,9 @@ respective rails.
 \end{figure}
 
 \alertImportant{
-    Pull-ups for \texttt{SDA} and \texttt{SCL} are taken as $1.5\si{k}$ as recommended in
+    Pull-ups for \texttt{SDA} and \texttt{SCL} are taken as $1.5\si{k\ohm}$ as recommended in
     the interfacing diagram from the datasheet. The pull-up for \texttt{INTn} is taken as
-    $10\si{k}$. See figure \ref{fig:joyInterGuide} for more info.
+    $10\si{k\ohm}$. See figure \ref{fig:joyInterGuide} for more info.
 }
 
 As we can see from the figure \ref{fig:interJoy} the joy stick is interfaced
@@ -202,7 +202,7 @@ through I2C, with an extra interrupt pin.
 
 \alertImportant{
     We will be using the same I2C bus used by the Joy stick module. Therefore,
-    as mentioned there, the $1.5\si{k}$ is taken as the pull-ups for \texttt{SDA} and \texttt{SCL}
+    as mentioned there, the $1.5\si{k\ohm}$ is taken as the pull-ups for \texttt{SDA} and \texttt{SCL}
     lines.
 }
 
@@ -246,8 +246,13 @@ through UART.
 \end{figure}
 
 \alertImportant{
-    In figure \ref{fig:interJtag} the pull-ups to \texttt{TCK} and \texttt{nRESET} are $47\si{k}$.
-    And the rest of the pull-ups are $100\si{k}$.
+    In figure \ref{fig:interJtag} the pull-ups to \texttt{TCK} and \texttt{nRESET} are $47\si{k\ohm}$.
+    And the rest of the pull-ups are $100\si{k\ohm}$.
+}
+
+\alertNote{
+    In figure \ref{fig:interJtag}, you can add a series $33\si{\ohm}$ resistor on \texttt{TDO} line,
+    close to the processor for impedance matching as mentioned in the specification of JTAG.
 }
 
 \subsubsection{PCB Layout Guidelines: LM2596}
@@ -263,6 +268,11 @@ through UART.
     \captionof{figure} {PCB layout guideline for LM2596 in fixed output mode.}
     \label{fig:lm2596Layout}
 \end{figure}
+
+\subsubsection{PCB Layout Guidelines: JTAG Connector}
+
+It is recommended to place the JTAG connector no more than 5 inches from the
+processor.
 
 % joy_interface_guideline.png
 % lm2596_layout_guideline.png

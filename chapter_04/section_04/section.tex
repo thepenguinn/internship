@@ -156,8 +156,29 @@ respective rails.
     \label{fig:interJoy}
 \end{figure}
 
+\alertNote{
+
+    Along with \texttt{SCL} and \texttt{SDA} pins, the joy stick also provides an \texttt{INTn}
+    pin. Which can be used to generate an interrupt from the device. Also note that these
+    pins\footnote{\texttt{SCL}, \texttt{SDA} and \texttt{INTn}.} need to be pulled high. Along
+    with this, there is also an \texttt{A1n} pin to select the I2C addresses. That can be grounded
+    to choose the address \texttt{0x82}. Please refer to the diagram \ref{fig:joyInterGuide} for more info.
+
+    \begin{figure} [H]
+        \centering
+        \includegraphics [
+            width = 0.7\textwidth,
+            max width = \IGXMaxWidth,
+            max height = \IGXMaxHeight,
+            \IGXDefaultOptionalArgs,
+        ] {pics/joy_interface_guideline.png}
+        \captionof{figure} {Interfacing guidelines given in the datasheet of Joy Stick.}
+        \label{fig:joyInterGuide}
+    \end{figure}
+}
+
 As we can see from the figure \ref{fig:interJoy} the joy stick is interfaced
-through I2C.
+through I2C, with an extra interrupt pin.
 
 \subsubsection{Interfacing Diagram: OLED}
 
@@ -175,6 +196,11 @@ through I2C.
 
 As we can see from the figure \ref{fig:interOled} the OLED display is interfaced
 through I2C.
+
+\alertNote{
+    The I2C address of OLED module is \texttt{0x3C}, so there will be no clash with
+    joy stick module.
+}
 
 \subsubsection{Interfacing Diagram: Camera}
 
@@ -226,6 +252,7 @@ through UART.
     \label{fig:lm2596Layout}
 \end{figure}
 
+% joy_interface_guideline.png
 % lm2596_layout_guideline.png
 % stm_cam_power_estimate.pdf
 % stm_interface_camera.png

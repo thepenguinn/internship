@@ -122,56 +122,70 @@ Required power supply is $3.3\si{V}$ to $5\si{V}$. We will be driving it using $
 \begin{figure}
     \centering
     \includegraphics [
-        width = 0.5\textwidth,
+        width = 0.4\textwidth,
         max width = \IGXMaxWidth,
         max height = \IGXMaxHeight,
         \IGXDefaultOptionalArgs,
     ] {pics/stm_interface_joy.png}
     \captionof{figure} {Interfacing diagram of joy stick with STM32H745ZI.}
-    \label{fig:}
+    \label{fig:interJoy}
 \end{figure}
+
+As we can see from the figure \ref{fig:interJoy} the joy stick is interfaced
+through I2C.
 
 \subsubsection{Interfacing Diagram: OLED}
 
 \begin{figure}
     \centering
     \includegraphics [
-        width = 0.5\textwidth,
+        width = 0.4\textwidth,
         max width = \IGXMaxWidth,
         max height = \IGXMaxHeight,
         \IGXDefaultOptionalArgs,
     ] {pics/stm_interface_oled.png}
     \captionof{figure} {Interfacing diagram of oled display with STM32H745ZI.}
-    \label{fig:}
+    \label{fig:interOled}
 \end{figure}
+
+As we can see from the figure \ref{fig:interOled} the OLED display is interfaced
+through I2C.
 
 \subsubsection{Interfacing Diagram: Camera}
 
 \begin{figure}
     \centering
     \includegraphics [
-        width = 0.5\textwidth,
+        width = 0.4\textwidth,
         max width = \IGXMaxWidth,
         max height = \IGXMaxHeight,
         \IGXDefaultOptionalArgs,
     ] {pics/stm_interface_camera.png}
     \captionof{figure} {Interfacing diagram of camera with STM32H745ZI.}
-    \label{fig:}
+    \label{fig:interCamera}
 \end{figure}
+
+As we can see from the figure \ref{fig:interCamera} the camera is interfaced
+through UART.
 
 \subsubsection{Interfacing Diagram: JTAG}
 
 \begin{figure}
     \centering
     \includegraphics [
-        width = 0.6\textwidth,
+        width = 0.5\textwidth,
         max width = \IGXMaxWidth,
         max height = \IGXMaxHeight,
         \IGXDefaultOptionalArgs,
     ] {pics/stm_interface_jtag.png}
     \captionof{figure} {Interfacing diagram of JTAG with STM32H745ZI.}
-    \label{fig:}
+    \label{fig:interJtag}
 \end{figure}
+
+\alertImportant{
+    In figure \ref{fig:interJtag} the pull-ups to \texttt{TCK} and \texttt{nRESET} are $47\si{k}$.
+    And the rest of the pull-ups are $100\si{k}$.
+}
 
 % \begin{figure}
 %     \centering

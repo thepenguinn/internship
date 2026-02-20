@@ -4,11 +4,32 @@
 
 \begin{document}
 
-\section{THU - FEB 13 2026} \label{sec:}
+\ifSubfilesClassLoaded {
+    \let\prechapter\chapter
+    \let\presection\section
+    \let\presubsection\subsection
+    \let\presubsubsection\subsubsection
+    \let\preparagraph\paragraph
 
-\subsection{Hardware Design Exercise}
+    \let\paragraph\presubsubsection
+    \let\subsubsection\presubsection
+    \let\subsection\presection
+    \let\section\prechapter
 
-\subsubsection{Requirements}
+
+    \section{Camera Controller using STM32H745ZI} \label{sec:}
+    % \gdef\subsubsection\subsection
+    % \gdef\paragraph\subsubsection
+    % \input{abstract.tex}
+    % \thispagestyle{empty}
+} {
+    % \chapter{Frequency Analysis of Signals} \label{chp:wrkFrequencyAnalysis}
+    \section{THU - FEB 13 2026} \label{sec:}
+    \subsection{Hardware Design Exercise}
+}
+
+
+\subsection{Design Requirements}
 
 \begin{enumerate}
 
@@ -22,7 +43,7 @@
 
 \end{enumerate}
 
-\subsubsection{Design Problem:}
+\subsection{Design Problem:}
 
 Design a system to control a camera with STM32. The system should take input from a joystick and
 6 push buttons. For debugging purposes we need an OLED display and JTAG interface.
@@ -31,39 +52,82 @@ Design a system to control a camera with STM32. The system should take input fro
 %
 % \end{enumerate}
 
+\subsection{Product Overview}
+
+At the heart of the camera controller, there will be an STM32H745ZI chip. The user input will be
+taken using a joy stick and 6 push buttons. For debugging there will be a 3inch OLED display and
+JTAG interface. The camera will be interfaced through UART.
+
+\texttt{TODO: INSERT OVERVIEW IMAGE}
+
 \subsubsection{STM32H745ZI: Power}
 
+% \subsubsection{STM32H745ZI: Interfaces}
+%
+% \begin{center}
+%     \begin{tabularx} {\textwidth} {
+%             >{\raggedright \arraybackslash}X
+%             *{3}{>{\raggedright \arraybackslash}X}
+%         }
+%
+%         \toprule
+%
+%         Device & \multicolumn{3}{l}{Available Interfaces} \\ \midrule
+%
+%         STM32H745ZI & 4 x I2C & 4 x USART & 6 x SPI \\
+%         & 2 x CAN & 2 x USB OTG & Ethernet \\
+%         & HDMI & 2 x SD/SDIO/MMC & MDIO Slave \\
+%
+%         \bottomrule
+%
+%     \end{tabularx}
+%     \captionof{table}{Some of the interfaces available in STM32H745ZI.}
+% \end{center}
+
+% \begin{center}
+%     \begin{tabularx} {\textwidth} {
+%             >{\raggedright \arraybackslash}p{6cm}
+%             *{2}{>{\raggedright \arraybackslash}X}
+%         }
+%
+%         \toprule
+%
+%         Device & \multicolumn{3}{l}{Interfaces Used} \\ \midrule
+%
+%         STM32H745ZI & Required Input Voltage(s) &  \\
+%         Joy Stick 67A-DF-IC-060C & I2C & & \\
+%         OLED Display & I2C & & \\
+%
+%         \bottomrule
+%
+%     \end{tabularx}
+%     \captionof{table}{Devices and Interfaces Used.}
+% \end{center}
+
 The required supply voltage is 1.2V to 3.3V.
-
-\subsubsection{STM32H745ZI: Interfaces}
-
-\begin{center}
-    \begin{tabularx} {\textwidth} {
-            >{\raggedright \arraybackslash}X
-            *{3}{>{\raggedright \arraybackslash}X}
-        }
-
-        \toprule
-
-        Device & \multicolumn{3}{l}{Available Interfaces} \\ \midrule
-
-        STM32H745ZI & 4 x I2C & 4 x USART & 6 x SPI \\
-        & 2 x CAN & 2 x USB OTG & Ethernet \\
-        & HDMI & 2 x SD/SDIO/MMC & MDIO Slave \\
-
-        \bottomrule
-
-    \end{tabularx}
-    \captionof{table}{Some of the interfaces available in STM32H745ZI.}
-\end{center}
 
 \subsubsection{Joy Stick 67A-DF-IC-060C: Power}
 
 Required power supply is $3.3\si{V} \pm 0.3\si{V}$.
 
-\subsubsection{OLED: Power}
+\subsubsection{OLED Module: Power}
 
 Required power supply is $3.3\si{V}$ to $5\si{V}$. We will be driving it using $3.3\si{V}$.
+
+\subsection{Block Diagram of the Entire System}
+
+\begin{figure}
+    \centering
+    \includegraphics [
+        max width = \IGXMaxWidth,
+        max height = \IGXMaxHeight,
+        \IGXDefaultOptionalArgs,
+    ] {pics/stm_joy_cam_block_diagram.pdf}
+    \captionof{figure} {Block Diagram.}
+    \label{fig:}
+\end{figure}
+
+\subsection{Interfacing}
 
 \subsubsection{Interfaces Used in the System}
 
@@ -106,18 +170,6 @@ Required power supply is $3.3\si{V}$ to $5\si{V}$. We will be driving it using $
 %     \item 1.3 inch OLED: 3647-26295-ND
 % \end{enumerate}
 
-\subsubsection{Block Diagram of the Entire System}
-
-\begin{figure}
-    \centering
-    \includegraphics [
-        max width = \IGXMaxWidth,
-        max height = \IGXMaxHeight,
-        \IGXDefaultOptionalArgs,
-    ] {pics/stm_joy_cam_block_diagram.pdf}
-    \captionof{figure} {Block Diagram.}
-    \label{fig:}
-\end{figure}
 
 \subsubsection{Power Calculation}
 

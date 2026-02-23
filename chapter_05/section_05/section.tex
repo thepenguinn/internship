@@ -1,0 +1,39 @@
+\documentclass[../../main]{subfiles}
+
+\input{section_header.tex}
+
+\begin{document}
+
+\section{MON - FEB 20 2026} \label{sec:}
+
+\subsection{Introduction to FreeRTOS}
+
+For most of the embedded systems, timing is really important. It means the system needs
+to respond to the events as fast as possible. There are two types of embedded systems
+based on the timing requirement: Hard Real Time and Soft Real Time.
+
+\alertNote{
+    \begin{itemize} [label=]
+        \item \textbf{Hard Real Time:} Timely response should be strictly enforced, otherwise
+            something catastrophic will happen.
+        \item \textbf{Soft Real Time:} It's fine to miss the timely response to an event. It would
+            only cause a minor inconvenience, nothing catastrophic will happen.
+    \end{itemize}
+}
+
+It is important to design the software that driving the system with this timing requirement in mind.
+Once the application software reaches a certain level of complexity it will be hard to manage this
+timing requirements.
+
+Another important thing that all embedded systems should adhere is determinism. The system should
+be deterministic in all the scenarios. Otherwise it will be hard to make sure the system will meet
+the timing requirements.
+
+One way to solve this issue\footnote{without loosing sanity} is to decouple the application software
+from the timing requirements. Then manage the timing externally. Thus born the scheduler.
+
+\subsubsection{Schedulers}
+
+
+
+\end{document}
